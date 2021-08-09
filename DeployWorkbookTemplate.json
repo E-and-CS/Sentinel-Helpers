@@ -5,35 +5,35 @@
     "BasedOn": "https://github.com/JamesDLD/AzureRm-Template/blob/52bf2e8e9181842c0e77919d544990823279bf2a/Create-AzWorkbookNetwork/galleryTemplate.json"
   },
   "parameters": {
-    "WorkbookName": {
+    "workbookName": {
       "type": "string",
       "defaultValue": "NetworkDebug",
       "metadata": {
         "description": "The friendly name for the workbook that is used in the Gallery or Saved List. Needs to be unique in the scope of the resource group and source"
       }
     },
-    "WorkbookType": {
+    "workbookType": {
       "type": "string",
       "defaultValue": "workbook",
       "metadata": {
         "description": "The gallery that the workbook will been shown under. Supported values include workbook, `tsg`, Azure Monitor, etc."
       }
     },
-    "WorkbookGallery": {
+    "workbookGallery": {
       "type": "string",
       "defaultValue": "Azure Monitor",
       "metadata": {
         "description": "The id of resource instance to which the workbook will be associated"
       }
     },
-    "WorkbookId": {
+    "workbookId": {
       "type": "string",
       "defaultValue": "[newGuid()]",
       "metadata": {
         "description": "The unique guid for this workbook instance"
       }
     },
-    "WorkbookContent": {
+    "workbookContent": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
@@ -43,25 +43,25 @@
   },
   "resources": [
     {
-      "name": "[parameters('WorkbookId')]",
+      "name": "[parameters('workbookId')]",
       "type": "Microsoft.Insights/workbooks",
       "location": "[resourceGroup().location]",
       "kind": "shared",
       "apiVersion": "2018-06-17-preview",
       "dependsOn": [],
       "properties": {
-        "displayName": "[parameters('WorkbookName')]",
-        "serializedData": "[parameters('WorkbookContent')]",
+        "displayName": "[parameters('workbookName')]",
+        "serializedData": "[parameters('workbookContent')]",
         "version": "1.0",
-        "sourceId": "[parameters('WorkbookGallery')]",
-        "category": "[parameters('WorkbookType')]"
+        "sourceId": "[parameters('workbookGallery')]",
+        "category": "[parameters('workbookType')]"
       }
     }
   ],
   "outputs": {
     "workbookId": {
       "type": "string",
-      "value": "[resourceId( 'Microsoft.Insights/workbooks', parameters('WorkbookId'))]"
+      "value": "[resourceId( 'Microsoft.Insights/workbooks', parameters('workbookId'))]"
     }
   }
 }
