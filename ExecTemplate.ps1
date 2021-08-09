@@ -49,9 +49,9 @@ if ($WorkbookGallery -in $galleryOptions && $WorkbookType -in $galleryOptions[$W
   New-AzResourceGroupDeployment -Name $(("$WorkbookType-$WorkbookName").replace(' ', '')) `
     -ResourceGroupName $ResourceGroup `
     -TemplateUri $TemplateUri `
-    -WorkbookName $WorkbookName `
-    -WorkbookType $WorkbookType `
-    -WorkbookGallery $WorkbookGallery `
-    -WorkbookContent ($WorkbookContent | ConvertTo-Json -Depth 20) `
+    -workbookName $WorkbookName `
+    -workbookType $WorkbookType `
+    -workbookGallery $WorkbookGallery `
+    -workbookContent ($WorkbookContent | ConvertTo-Json -Depth 20) `
     -Confirm -ErrorAction Stop
 }
